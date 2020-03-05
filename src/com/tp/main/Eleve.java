@@ -1,3 +1,5 @@
+package com.tp.main;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +10,7 @@ import static java.util.Collections.emptyList;
  * REPONSE A LA QUESTION 1
  * Le concept de la programmation orientée objet auquel nous avons pensé, est l'heritage.Nous avons donc
  * cree une classe Personne qui aura des proprietes nom et prenom et nous n'avons besoin de definir ces proprietes
- * dans la classe Eleve, vu qu'elle est herité, nous allons juste utiliser les getters et setters de la superclasse
+ * dans la classe com.tp.java.Eleve, vu qu'elle est herité, nous allons juste utiliser les getters et setters de la superclasse
  */
 public class Eleve extends Person {
     public static final int NB_EVALUATIONS = 10;
@@ -32,7 +34,7 @@ public class Eleve extends Person {
         super(nom, prenom);
     }
 
-//    public Eleve(String nom, String prenom, int jour, int mois, int annee) {
+//    public com.tp.java.Eleve(String nom, String prenom, int jour, int mois, int annee) {
 //        super(nom, prenom); // fait appel au constructeur de la classe parent
 //        this.jour = jour;
 //        this.mois = mois;

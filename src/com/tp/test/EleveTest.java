@@ -1,3 +1,7 @@
+package com.tp.test;
+
+import com.tp.main.Eleve;
+import com.tp.main.Evaluation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

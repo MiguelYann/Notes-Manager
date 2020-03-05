@@ -1,3 +1,5 @@
+package com.tp.main;
+
 public class Person {
     private String nom;
     private String prenom;
