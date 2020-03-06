@@ -56,9 +56,22 @@ class PromotionTest {
         //Then
 
         assertNull(promotion.recherche(eleveRecherche));
-
-
-
     }
 
+    @Test
+    void should_student_promotion_has_student() {
+
+        final Eleve firstStudent = new Eleve("Raissa", "Wahoue", 1);
+        final Eleve secondStudent = new Eleve("Thierry", "Damien", 2);
+        final Eleve thirdStudent = new Eleve("Vincent", "David", 3);
+        final Eleve fourthStudent = new Eleve("Stephane", "Scott", 4);
+        final Eleve fifthStudent = new Eleve("Julien", "Pierre", 5);
+        final Eleve sixthStudent = new Eleve("Julie", "Marie", 6);
+
+        final Set<Eleve> eleves = Set.of(firstStudent, secondStudent, thirdStudent, fourthStudent, fifthStudent, sixthStudent);
+        Promotion promotion = new Promotion(eleves);
+
+        Assertions.assertEquals("Thierry", promotion.recherche(secondStudent).getNom());
+
+    }
 }
