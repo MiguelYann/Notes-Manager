@@ -1,7 +1,9 @@
 package com.tp.main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
@@ -19,7 +21,7 @@ public class Eleve extends Person {
     private String prenom;
     private int jour;
 
-    public List<Evaluation> getEvaluations() {
+    public Set<Evaluation> getEvaluations() {
         return evaluations;
     }
 
@@ -27,7 +29,7 @@ public class Eleve extends Person {
     private int annee;
     private float moyenne;
     private float mediane;
-    private List<Evaluation> evaluations;
+    private Set<Evaluation> evaluations;
     private Promotion promotion;
 
     public Eleve(String nom, String prenom) {
@@ -69,7 +71,7 @@ public class Eleve extends Person {
         return emptyList();
     }
 
-    public void setEvaluations(List<Evaluation> evaluations) {
+    public void setEvaluations(Set<Evaluation> evaluations) {
         this.evaluations = evaluations;
     }
 
@@ -93,5 +95,12 @@ public class Eleve extends Person {
         return notes.stream()
                         .mapToDouble(note -> note)
                         .average().getAsDouble();
+    }
+
+
+    public Set<Professeur> getCorrecteurs() {
+       return evaluations.stream()
+                .map(Evaluation::getCorrecteur)
+                .collect(Collectors.toSet());
     }
 }
