@@ -1,7 +1,6 @@
 package com.tp.main;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +31,7 @@ public class Eleve extends Person {
     private Set<Evaluation> evaluations;
     private Promotion promotion;
 
-    public Eleve(String nom, String prenom) {
+    public Eleve(String nom, String prenom, int id) {
         super(nom, prenom);
     }
 
@@ -42,6 +41,16 @@ public class Eleve extends Person {
 //        this.mois = mois;
 //        this.annee = annee;
 //    }
+
+    @Override
+    public String toString() {
+        return "Eleve{" +
+                "iD=" + iD +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", moyenne=" + moyenne +
+                '}';
+    }
 
     public int getiD() {
         return iD;

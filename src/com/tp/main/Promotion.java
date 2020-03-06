@@ -5,15 +5,34 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Promotion implements Comparable {
-    private int id;
 
-    // ceci parce que nous estimons que dans une promotion nous aurons pas de doublons d'eleves
+
+
+
+    private String nomPromotion;
+
+    /**
+     *
+     * @return une listes d'eleves en estimant que nous avons pas de doublons
+     */
+    public Set<Eleve> getEleves() {
+        return eleves;
+    }
+
     private Set<Eleve> eleves;
 
-    public Promotion(int id, Set<Eleve> eleves) {
-        this.id = id;
+    public Promotion(Set<Eleve> eleves) {
         this.eleves = eleves;
     }
+
+    public Promotion(String nomPromotion) {
+        this.nomPromotion = nomPromotion;
+    }
+
+//    public Eleve rechercher(Eleve eleve) {
+//       if(eleve.)
+//        }
+//    }
 
     @Override
     public int compareTo(Object o) {
@@ -30,5 +49,20 @@ public class Promotion implements Comparable {
                 .collect(Collectors.toList());
 
                 return (Double[]) ordered.toArray();
+    }
+
+    public String getNomPromotion() {
+        return nomPromotion;
+    }
+
+    public void setNomPromotion(String nomPromotion) {
+        this.nomPromotion = nomPromotion;
+    }
+    Promotion() {
+
+    }
+
+    public Eleve recherche(Eleve eleveRecherche) {
+        return null;
     }
 }

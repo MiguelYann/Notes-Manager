@@ -22,7 +22,7 @@ class EleveTest {
 
     @BeforeEach
     void setup() {
-        this.eleve = new Eleve("Raissa", "Wahoue");
+        this.eleve = new Eleve("Raissa", "Wahoue", 1);
     }
 
     @Test
@@ -81,7 +81,7 @@ class EleveTest {
     void should_get_all_professeurs_that_evaluate_students() {
 
         //Given
-        Eleve anStudent = new Eleve("Raissa", "Wahoue");
+        Eleve anStudent = new Eleve("Raissa", "Wahoue", 1);
         final Professeur professeurMaths = new Professeur("La Menace", "Max");
         final Professeur professeurPhysics = new Professeur("Tournesol", "Soleil");
         final Evaluation evaluationMaths = new Evaluation("Maths", anStudent, professeurMaths);
