@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.emptyList;
-
 /**
  * REPONSE A LA QUESTION 1
  * Le concept de la programmation orientée objet auquel nous avons pensé, est l'heritage.Nous avons donc
@@ -19,72 +17,47 @@ public class Eleve extends Person {
     private String nom;
     private String prenom;
     private int jour;
-
-    public Set<Evaluation> getEvaluations() {
-        return evaluations;
-    }
-
     private int mois;
     private int annee;
-    private float moyenne;
+    private Double moyenne;
     private float mediane;
-    private Set<Evaluation> evaluations;
+    private List<Evaluation> evaluations;
     private Promotion promotion;
 
-    public Eleve(String nom, String prenom, int id) {
+    public Eleve(int id, String prenom, String nom) {
         super(nom, prenom);
+        this.iD = id;
     }
 
-//    public com.tp.java.Eleve(String nom, String prenom, int jour, int mois, int annee) {
-//        super(nom, prenom); // fait appel au constructeur de la classe parent
-//        this.jour = jour;
-//        this.mois = mois;
-//        this.annee = annee;
-//    }
+    public Eleve(String nom, String prenom, int jour, int mois, int annee) {
+        super(nom, prenom);
+        this.jour = jour;
+        this.mois = mois;
+        this.annee = annee;
+    }
 
     @Override
     public String toString() {
-        return "Eleve{" +
-                "iD=" + iD +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", moyenne=" + moyenne +
-                '}';
+        return "(" + this.getNom() + ", " + this.getPrenom() + ") id:"
+                + this.iD + "\nnotes:\n"
+                + this.getEvaluations() + "\n"
+                + "Moyenne = " + this.average() + "\n" +
+                "Mediane = " + this.mediane + "\n" +
+                "Correcteur(s): " + this.getCorrecteurs() + "\n" +
+                "Nom de la promotion: " + this.promotion;
     }
 
-    public int getiD() {
-        return iD;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
-    public Double mediane() throws IllegalStateException {
-        final List<Float> notes = getNotes();
-        System.out.println(notes);
-
-        if (notes.isEmpty()) {
-            throw new IllegalStateException();
-        }
-
-        return notes.stream()
-                .mapToDouble((n) -> n)
-                .average().getAsDouble();
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
-    private List<Float> getNotes() {
-        for (Evaluation evaluation : evaluations) {
-            if (evaluation.getNote().isPresent()) {
-                return evaluations.stream()
-                        .map(eval -> eval.getNote().orElse(0.0f))
-                        .collect(Collectors.toList());
-            }
-        }
-        return emptyList();
-    }
-
-    public void setEvaluations(Set<Evaluation> evaluations) {
-        this.evaluations = evaluations;
-    }
-
-    public List<Float> getNote() {
+    public List<Float> getNotes() {
         List<Float> notes = new ArrayList<>();
         for (Evaluation evaluation : evaluations) {
             if (evaluation.getNote().isEmpty()) {
@@ -95,21 +68,62 @@ public class Eleve extends Person {
         return notes;
     }
 
-    public Double getAverage() {
-        if (evaluations.isEmpty()) {
+    public Double average() {
+        if (this.evaluations.isEmpty()) {
             return null;
         }
 
-        List<Float> notes = getNote();
-        return notes.stream()
-                        .mapToDouble(note -> note)
-                        .average().getAsDouble();
+        List<Float> notes = getNotes();
+        moyenne = notes.stream()
+                .mapToDouble(note -> note)
+                .average().getAsDouble();
+        return moyenne;
     }
 
+    //TODO Calcul de la mediane
+    public Double median() {
+        return null;
+    }
 
     public Set<Professeur> getCorrecteurs() {
-       return evaluations.stream()
+        return evaluations.stream()
                 .map(Evaluation::getCorrecteur)
                 .collect(Collectors.toSet());
+    }
+
+    public int getiD() {
+        return iD;
+    }
+
+    /**
+     * @return first name of student
+     */
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    /**
+     * @return last Name of student
+     */
+    @Override
+    public String getPrenom() {
+        return super.getPrenom();
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 }

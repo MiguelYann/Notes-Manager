@@ -8,8 +8,9 @@ public class Evaluation {
     private Eleve eleveCorrige;
     private Professeur correcteur;
 
-    public Evaluation(String matiere, Eleve eleveCorrige, Professeur correcteur) {
+    public Evaluation(String matiere, Float note, Eleve eleveCorrige, Professeur correcteur) {
         this.matiere = matiere;
+        this.note = note;
         this.eleveCorrige = eleveCorrige;
         this.correcteur = correcteur;
     }
@@ -56,6 +57,4 @@ public class Evaluation {
                 " (" + this.correcteur.getPrenom() + ", " + this.correcteur.getNom() + ") " +
                 this.matiere + " " + this.note + ")";
     }
-
-//    ((Jean, Duval) (Soleil, Tournesol) mathématiques 12.0)
 }

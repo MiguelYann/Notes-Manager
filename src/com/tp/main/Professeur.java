@@ -1,5 +1,12 @@
 package com.tp.main;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import static java.util.Objects.isNull;
+
 /**
  * REPONSE A LA QUESTION 1
  * Le concept de la programmation orientée objet auquel nous avons pensé, est l'heritage.Nous avons donc
@@ -13,11 +20,55 @@ public class Professeur extends Person {
         super(nom, prenom);
     }
 
-    public Eleve recherher(Promotion promotion, int eleveId) {
-        return null;
-    }
-
     public void modifier(Eleve eleve) {
 
+    }
+
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    @Override
+    public String getPrenom() {
+        return super.getPrenom();
+    }
+
+    public Eleve recherher(Promotion promotion, int eleveId) {
+        final Set<Eleve> promotionEleves = promotion.getEleves();
+        final Optional<Eleve> firstStudent = getSearchStudent(eleveId, promotionEleves);
+
+        return firstStudent.orElse(null);
+    }
+
+    private Optional<Eleve> getSearchStudent(int eleveId, Set<Eleve> promotionEleves) {
+        return promotionEleves.stream()
+                .filter(eleve -> eleve.getiD() == eleveId)
+                .findFirst();
+    }
+
+    public void setNote(Promotion promotion, int iD, Float note, int index) throws IllegalStateException {
+        final Eleve eleveRecherche = recherher(promotion, iD);
+        if (eleveRecherche == null) {
+            throw new IllegalStateException();
+        }
+
+        Float noteToModify = eleveRecherche.getNotes().get(index);
+        final List<Evaluation> evaluations = eleveRecherche.getEvaluations();
+        if (eleveRecherche.getiD() == iD && !isNull(noteToModify)) {
+
+            evaluations.stream()
+                    .filter(notePredicate(noteToModify))
+                    .forEach(evaluation -> evaluation.setNote(note));
+
+        } else if (eleveRecherche.getiD() == iD && isNull(noteToModify)) {
+            Evaluation evaluation = new Evaluation();
+            evaluation.setNote(note);
+            evaluations.add(evaluation);
+        }
+    }
+
+    private Predicate<Evaluation> notePredicate(Float theNote) {
+        return evaluation -> evaluation.getNote().isPresent() && evaluation.getNote().get().equals(theNote);
     }
 }

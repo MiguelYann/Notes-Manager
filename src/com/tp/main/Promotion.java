@@ -8,15 +8,11 @@ public class Promotion implements Comparable {
 
 
     private String nomPromotion;
-
-    /**
-     * @return une listes d'eleves en estimant que nous avons pas de doublons
-     */
-    public Set<Eleve> getEleves() {
-        return eleves;
-    }
-
     private Set<Eleve> eleves;
+
+    public Promotion() {
+
+    }
 
     public Promotion(Set<Eleve> eleves) {
         this.eleves = eleves;
@@ -30,6 +26,21 @@ public class Promotion implements Comparable {
 //       if(eleve.)
 //        }
 //    }
+
+    /**
+     * @return une listes d'eleves en estimant que nous avons pas de doublons
+     */
+    public Set<Eleve> getEleves() {
+        return eleves;
+    }
+
+    public String getNomPromotion() {
+        return nomPromotion;
+    }
+
+    public void setNomPromotion(String nomPromotion) {
+        this.nomPromotion = nomPromotion;
+    }
 
     @Override
     public int compareTo(Object o) {
@@ -48,24 +59,19 @@ public class Promotion implements Comparable {
         return (Double[]) ordered.toArray();
     }
 
-    public String getNomPromotion() {
-        return nomPromotion;
-    }
-
-    public void setNomPromotion(String nomPromotion) {
-        this.nomPromotion = nomPromotion;
-    }
-
-    Promotion() {
-
-    }
-
-    public Eleve recherche(Eleve eleveRecherche) {
+    public Eleve recherche(int iD) {
         for (Eleve eleve : eleves) {
-            if (eleveRecherche.getiD() == eleve.getiD()) {
-                return eleveRecherche;
+            if (iD == eleve.getiD()) {
+                return eleve;
             }
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return nomPromotion;
+    }
+
+
 }

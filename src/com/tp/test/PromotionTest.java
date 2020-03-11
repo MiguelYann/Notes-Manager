@@ -14,12 +14,12 @@ class PromotionTest {
 
     @Test
     void should_have_classement_students_on_promotion_have_notes() {
-        final Eleve firstStudent = new Eleve("Raissa", "Wahoue", 1);
-        final Eleve secondStudent = new Eleve("Thierry", "Damien", 2);
-        final Eleve thirdStudent = new Eleve("Vincent", "David", 3);
-        final Eleve fourthStudent = new Eleve("Stephane", "Scott", 4);
-        final Eleve fifthStudent = new Eleve("Julien", "Pierre", 5);
-        final Eleve sixthStudent = new Eleve("Julie", "Marie", 6);
+        final Eleve firstStudent = new Eleve(1, "Wahoue", "Raissa");
+        final Eleve secondStudent = new Eleve(2, "Damien", "Thierry");
+        final Eleve thirdStudent = new Eleve(3, "David", "Vincent");
+        final Eleve fourthStudent = new Eleve(4, "Scott", "Stephane");
+        final Eleve fifthStudent = new Eleve(5, "Pierre", "Julien");
+        final Eleve sixthStudent = new Eleve(6, "Marie", "Julie");
         final Set<Eleve> eleves = Set.of(firstStudent, secondStudent, thirdStudent, fourthStudent, fifthStudent, sixthStudent);
 
         Double averageFirstStudent = 12.0;
@@ -42,36 +42,36 @@ class PromotionTest {
 
     @Test
     void should_null_student_search_not_in_promotion() {
-        final Eleve firstStudent = new Eleve("Raissa", "Wahoue", 1);
-        final Eleve secondStudent = new Eleve("Thierry", "Damien", 2);
-        final Eleve thirdStudent = new Eleve("Vincent", "David", 3);
-        final Eleve fourthStudent = new Eleve("Stephane", "Scott", 4);
-        final Eleve fifthStudent = new Eleve("Julien", "Pierre", 5);
-        final Eleve sixthStudent = new Eleve("Julie", "Marie", 6);
+        final Eleve firstStudent = new Eleve(1, "Wahoue", "Raissa");
+        final Eleve secondStudent = new Eleve(2, "Damien", "Thierry");
+        final Eleve thirdStudent = new Eleve(3, "David", "Vincent");
+        final Eleve fourthStudent = new Eleve(4, "Scott", "Stephane");
+        final Eleve fifthStudent = new Eleve(5, "Pierre", "Julien");
+        final Eleve sixthStudent = new Eleve(6, "Marie", "Julie");
         final Set<Eleve> eleves = Set.of(firstStudent, secondStudent, thirdStudent, fourthStudent, fifthStudent, sixthStudent);
         Promotion promotion = new Promotion(eleves);
-        final Eleve eleveRecherche = new Eleve("Miguel", "yann", 7);
+        final Eleve eleveRecherche = new Eleve(7, "yann", "Miguel");
 
 
         //Then
 
-        assertNull(promotion.recherche(eleveRecherche));
+        assertNull(promotion.recherche(7));
     }
 
     @Test
     void should_student_promotion_has_student() {
 
-        final Eleve firstStudent = new Eleve("Raissa", "Wahoue", 1);
-        final Eleve secondStudent = new Eleve("Thierry", "Damien", 2);
-        final Eleve thirdStudent = new Eleve("Vincent", "David", 3);
-        final Eleve fourthStudent = new Eleve("Stephane", "Scott", 4);
-        final Eleve fifthStudent = new Eleve("Julien", "Pierre", 5);
-        final Eleve sixthStudent = new Eleve("Julie", "Marie", 6);
+        final Eleve firstStudent = new Eleve(1, "Wahoue", "Raissa");
+        final Eleve secondStudent = new Eleve(2, "Damien", "Thierry");
+        final Eleve thirdStudent = new Eleve(3, "David", "Vincent");
+        final Eleve fourthStudent = new Eleve(4, "Scott", "Stephane");
+        final Eleve fifthStudent = new Eleve(5, "Pierre", "Julien");
+        final Eleve sixthStudent = new Eleve(6, "Marie", "Julie");
 
         final Set<Eleve> eleves = Set.of(firstStudent, secondStudent, thirdStudent, fourthStudent, fifthStudent, sixthStudent);
         Promotion promotion = new Promotion(eleves);
 
-        Assertions.assertEquals("Thierry", promotion.recherche(secondStudent).getNom());
+        Assertions.assertEquals("Thierry", promotion.recherche(2).getNom());
 
     }
 }
