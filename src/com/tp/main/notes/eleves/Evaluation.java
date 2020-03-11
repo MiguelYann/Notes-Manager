@@ -1,4 +1,6 @@
-package com.tp.main;
+package com.tp.main.notes.eleves;
+
+import com.tp.main.notes.professeurs.Professeur;
 
 import java.util.Optional;
 

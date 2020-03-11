@@ -1,4 +1,4 @@
-package com.tp.main;
+package com.tp.main.notes.eleves;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

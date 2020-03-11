@@ -1,4 +1,9 @@
-package com.tp.main;
+package com.tp.main.notes.professeurs;
+
+import com.tp.main.Person;
+import com.tp.main.notes.eleves.Eleve;
+import com.tp.main.notes.eleves.Evaluation;
+import com.tp.main.notes.eleves.Promotion;
 
 import java.util.List;
 import java.util.Optional;
