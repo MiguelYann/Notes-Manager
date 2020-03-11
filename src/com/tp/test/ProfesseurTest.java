@@ -1,5 +1,9 @@
-package com.tp.main;
+package com.tp.test;
 
+import com.tp.main.Eleve;
+import com.tp.main.Evaluation;
+import com.tp.main.Professeur;
+import com.tp.main.Promotion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
