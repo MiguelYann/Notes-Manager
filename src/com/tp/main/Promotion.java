@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class Promotion implements Comparable {
 
-
     private String nomPromotion;
     private Set<Eleve> eleves;
 
@@ -22,11 +21,6 @@ public class Promotion implements Comparable {
         this.nomPromotion = nomPromotion;
     }
 
-//    public Eleve rechercher(Eleve eleve) {
-//       if(eleve.)
-//        }
-//    }
-
     /**
      * @return une listes d'eleves en estimant que nous avons pas de doublons
      */
@@ -40,6 +34,15 @@ public class Promotion implements Comparable {
 
     public void setNomPromotion(String nomPromotion) {
         this.nomPromotion = nomPromotion;
+    }
+
+    public Eleve recherche(int iD) {
+        for (Eleve eleve : eleves) {
+            if (iD == eleve.getiD()) {
+                return eleve;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -59,19 +62,8 @@ public class Promotion implements Comparable {
         return (Double[]) ordered.toArray();
     }
 
-    public Eleve recherche(int iD) {
-        for (Eleve eleve : eleves) {
-            if (iD == eleve.getiD()) {
-                return eleve;
-            }
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return nomPromotion;
     }
-
-
 }
