@@ -1,16 +1,19 @@
 package com.tp.main.notes.eleves;
 
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-public class Promotion implements Comparable {
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
+
+public class Promotion {
 
     private String nomPromotion;
-    private Set<Eleve> eleves;
+    private Set<Eleve> eleves = new HashSet<>();
 
     public Promotion() {
-
     }
 
     public Promotion(Set<Eleve> eleves) {
@@ -45,21 +48,18 @@ public class Promotion implements Comparable {
         return null;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+    public List<Eleve> getClassementByAverage() {
+        return getEleves(comparing(Eleve::average));
     }
 
-    public String[] getClassement() {
-        return new String[9];
+    public List<Eleve> getClassementByMedian() {
+        return getEleves(comparing(Eleve::median));
     }
 
-    public Double[] getClassement(List<Double> averages) {
-        List<Double> ordered = averages.stream()
-                .sorted()
-                .collect(Collectors.toList());
-
-        return (Double[]) ordered.toArray();
+    private List<Eleve> getEleves(Comparator<Eleve> comparing) {
+        return eleves.stream()
+                .sorted(comparing)
+                .collect(toList());
     }
 
     @Override

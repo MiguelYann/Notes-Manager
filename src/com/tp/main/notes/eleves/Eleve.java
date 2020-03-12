@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * cree une classe Personne qui aura des proprietes nom et prenom et nous n'avons besoin de definir ces proprietes
  * dans la classe com.tp.java.Eleve, vu qu'elle est herité, nous allons juste utiliser les getters et setters de la superclasse
  */
-public class Eleve extends Person {
+public class Eleve extends Person implements Comparable {
     public static final int NB_EVALUATIONS = 10;
     private int iD;
     private String nom;
@@ -43,12 +43,25 @@ public class Eleve extends Person {
     @Override
     public String toString() {
         return "(" + this.getNom() + ", " + this.getPrenom() + ") id:"
-                + this.iD + "\nnotes:\n"
-                + this.getEvaluations() + "\n"
+                + this.iD + "\nnotes: "
+                + toStringNote(this.getEvaluations()) + "\n"
                 + "Moyenne = " + this.average() + "\n" +
                 "Mediane = " + this.mediane + "\n" +
                 "Correcteur(s): " + this.getCorrecteurs() + "\n" +
                 "Nom de la promotion: " + this.promotion;
+    }
+
+    public static String toStringNote(List<Evaluation> evaluations) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Evaluation evaluation : evaluations
+        ) {
+            stringBuilder.append(evaluation.getMatiere());
+            stringBuilder.append(" ");
+            stringBuilder.append(evaluation.getNote().get());
+            stringBuilder.append(" ");
+
+        }
+        return stringBuilder.toString();
     }
 
     @Override
@@ -59,6 +72,25 @@ public class Eleve extends Person {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    /**
+     * @return last Name of student
+     */
+    @Override
+    public String getPrenom() {
+        return super.getPrenom();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Eleve eleve = (Eleve) o;
+        return eleve.moyenne.compareTo(this.moyenne);
     }
 
     public Double median() {
@@ -127,18 +159,6 @@ public class Eleve extends Person {
     /**
      * @return first name of student
      */
-    @Override
-    public String getNom() {
-        return super.getNom();
-    }
-
-    /**
-     * @return last Name of student
-     */
-    @Override
-    public String getPrenom() {
-        return super.getPrenom();
-    }
 
     public List<Evaluation> getEvaluations() {
         return evaluations;

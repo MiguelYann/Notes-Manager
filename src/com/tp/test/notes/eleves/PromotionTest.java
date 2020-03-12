@@ -37,8 +37,7 @@ class PromotionTest {
 
         //Then
 
-//        Assertions.assertArrayEquals(expectedClassement, classementPromotion);
-
+//Assertions.assertEquals("Julie", );
     }
 
     @Test
@@ -73,6 +72,5 @@ class PromotionTest {
         Promotion promotion = new Promotion(eleves);
 
         Assertions.assertEquals("Thierry", promotion.recherche(2).getNom());
-
     }
 }

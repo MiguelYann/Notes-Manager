@@ -10,15 +10,14 @@ public class Evaluation {
     private Eleve eleveCorrige;
     private Professeur correcteur;
 
+    public Evaluation() {
+    }
+
     public Evaluation(String matiere, Double note, Eleve eleveCorrige, Professeur correcteur) {
         this.matiere = matiere;
         this.note = note;
         this.eleveCorrige = eleveCorrige;
         this.correcteur = correcteur;
-    }
-
-    public Evaluation() {
-
     }
 
     public String getMatiere() {
