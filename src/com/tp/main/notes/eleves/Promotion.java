@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Promotion {
 
-    private String nomPromotion;
+    private String nom;
     private Set<Eleve> eleves = new HashSet<>();
 
     public Promotion() {
@@ -20,8 +20,8 @@ public class Promotion {
         this.eleves = eleves;
     }
 
-    public Promotion(String nomPromotion) {
-        this.nomPromotion = nomPromotion;
+    public Promotion(String nom) {
+        this.nom = nom;
     }
 
     /**
@@ -31,21 +31,19 @@ public class Promotion {
         return eleves;
     }
 
-    public String getNomPromotion() {
-        return nomPromotion;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNomPromotion(String nomPromotion) {
-        this.nomPromotion = nomPromotion;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public Eleve recherche(int iD) {
-        for (Eleve eleve : eleves) {
-            if (iD == eleve.getiD()) {
-                return eleve;
-            }
-        }
-        return null;
+        return eleves.stream()
+                .filter(eleve -> eleve.getiD() == iD)
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Eleve> getClassementByAverage() {
@@ -64,6 +62,6 @@ public class Promotion {
 
     @Override
     public String toString() {
-        return nomPromotion;
+        return nom;
     }
 }

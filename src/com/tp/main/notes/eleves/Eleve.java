@@ -42,25 +42,24 @@ public class Eleve extends Person implements Comparable {
 
     @Override
     public String toString() {
-        return "(" + this.getNom() + ", " + this.getPrenom() + ") id:"
+        return "\n\n(" + this.getNom() + ", " + this.getPrenom() + ") id:"
                 + this.iD + "\nnotes: "
-                + toStringNote(this.getEvaluations()) + "\n"
+                + toStringNotes(this.getEvaluations()) + "\n"
                 + "Moyenne = " + this.average() + "\n" +
-                "Mediane = " + this.mediane + "\n" +
+                "Mediane = " + this.median() + "\n" +
                 "Correcteur(s): " + this.getCorrecteurs() + "\n" +
                 "Nom de la promotion: " + this.promotion;
     }
 
-    public static String toStringNote(List<Evaluation> evaluations) {
+    public static String toStringNotes(List<Evaluation> evaluations) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Evaluation evaluation : evaluations
-        ) {
+        evaluations.forEach(evaluation -> {
             stringBuilder.append(evaluation.getMatiere());
             stringBuilder.append(" ");
             stringBuilder.append(evaluation.getNote().get());
             stringBuilder.append(" ");
+        });
 
-        }
         return stringBuilder.toString();
     }
 
