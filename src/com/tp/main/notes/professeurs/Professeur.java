@@ -52,13 +52,13 @@ public class Professeur extends Person {
                 .findFirst();
     }
 
-    public void setNote(Promotion promotion, int iD, Float note, int index) throws IllegalStateException {
+    public void setNote(Promotion promotion, int iD, Double note, int index) throws IllegalStateException {
         final Eleve eleveRecherche = recherher(promotion, iD);
         if (eleveRecherche == null) {
             throw new IllegalStateException();
         }
 
-        Float noteToModify = eleveRecherche.getNotes().get(index);
+        Double noteToModify = eleveRecherche.getNotes().get(index);
         final List<Evaluation> evaluations = eleveRecherche.getEvaluations();
         if (eleveRecherche.getiD() == iD && !isNull(noteToModify)) {
 
@@ -73,7 +73,7 @@ public class Professeur extends Person {
         }
     }
 
-    private Predicate<Evaluation> notePredicate(Float theNote) {
+    private Predicate<Evaluation> notePredicate(Double theNote) {
         return evaluation -> evaluation.getNote().isPresent() && evaluation.getNote().get().equals(theNote);
     }
 }

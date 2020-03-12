@@ -6,11 +6,11 @@ import java.util.Optional;
 
 public class Evaluation {
     private String matiere;
-    private Float note;
+    private Double note;
     private Eleve eleveCorrige;
     private Professeur correcteur;
 
-    public Evaluation(String matiere, Float note, Eleve eleveCorrige, Professeur correcteur) {
+    public Evaluation(String matiere, Double note, Eleve eleveCorrige, Professeur correcteur) {
         this.matiere = matiere;
         this.note = note;
         this.eleveCorrige = eleveCorrige;
@@ -29,11 +29,11 @@ public class Evaluation {
         this.matiere = matiere;
     }
 
-    public Optional<Float> getNote() {
+    public Optional<Double> getNote() {
         return Optional.ofNullable(note);
     }
 
-    public void setNote(Float note) {
+    public void setNote(Double note) {
         this.note = note;
     }
 

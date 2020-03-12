@@ -4,6 +4,7 @@ import com.tp.main.Person;
 import com.tp.main.notes.professeurs.Professeur;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class Eleve extends Person {
     private int mois;
     private int annee;
     private Double moyenne;
-    private float mediane;
+    private Double mediane;
     private List<Evaluation> evaluations;
     private Promotion promotion;
 
@@ -60,8 +61,36 @@ public class Eleve extends Person {
         return super.equals(obj);
     }
 
-    public List<Float> getNotes() {
-        List<Float> notes = new ArrayList<>();
+    public Double median() {
+        final int notesTotal = getNotes().size();
+        List<Double> notes = getNotes();
+        mediane = computeMedianFrom(notesTotal, notes);
+        return mediane;
+    }
+
+    private Double computeMedianFrom(int notesTotal, List<Double> notes) {
+        Double aMedian = 0.0;
+        int positionMedian = 0;
+
+
+        switch (notesTotal % 2) {
+            case 1:
+                Collections.sort(notes);
+                positionMedian = (notesTotal + 1) / 2;
+                aMedian = notes.get(positionMedian - 1);
+                break;
+            case 0:
+                Collections.sort(notes);
+                final int firstRank = notesTotal / 2;
+                final int secondRank = (notesTotal / 2) + 1;
+                aMedian = (notes.get(firstRank - 1) + notes.get(secondRank - 1)) / 2;
+                break;
+        }
+        return aMedian;
+    }
+
+    public List<Double> getNotes() {
+        List<Double> notes = new ArrayList<>();
         for (Evaluation evaluation : evaluations) {
             if (evaluation.getNote().isEmpty()) {
                 throw new IllegalStateException();
@@ -76,16 +105,11 @@ public class Eleve extends Person {
             return null;
         }
 
-        List<Float> notes = getNotes();
+        List<Double> notes = getNotes();
         moyenne = notes.stream()
                 .mapToDouble(note -> note)
                 .average().getAsDouble();
-        return moyenne;
-    }
-
-    //TODO Calcul de la mediane
-    public Double median() {
-        return null;
+        return Math.floor(moyenne);
     }
 
     public Set<Professeur> getCorrecteurs() {

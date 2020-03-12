@@ -43,15 +43,15 @@ class EleveTest {
 
         //Given
         eleve.setEvaluations(evaluationsWithNoteFactory());
-        List<Float> notes = evaluationsWithNoteFactory().stream()
+        List<Double> expectedNotes = evaluationsWithNoteFactory().stream()
                 .map((evaluation -> evaluation.getNote().get()))
                 .collect(Collectors.toList());
 
         //When
-        eleve.getNotes();
+        final List<Double> actualNotes = eleve.getNotes();
 
         //Then
-        assertEquals(notes.size(), 2);
+        assertEquals(expectedNotes.size(), actualNotes.size());
     }
 
     @Test
@@ -77,7 +77,30 @@ class EleveTest {
         Double average = eleve.average();
 
         //Then
-        Assertions.assertEquals(13.25F, average);
+        Assertions.assertEquals(8.0, average);
+    }
+
+    @Test
+    void should_not_have_median_student_does_not_have_evaluation() {
+
+        //Given
+        eleve.setEvaluations(Collections.emptyList());
+
+        //When and then
+        Assertions.assertNull(eleve.median());
+
+    }
+
+    @Test
+    void should_median_students_does_have_evaluations() {
+
+        //Given
+        eleve.setEvaluations(evaluationsWithNoteFactory());
+
+        //When and Then
+
+        Assertions.assertEquals(9, eleve.median());
+
     }
 
     @Test
@@ -106,12 +129,34 @@ class EleveTest {
 
     private static List<Evaluation> evaluationsWithNoteFactory() {
         Evaluation physics = new Evaluation();
-        physics.setNote(12.0F);
+        physics.setNote(10.0);
         physics.setMatiere("Physics");
+//10 – 7 – 8 – 7 – 14 – 11
         Evaluation mathematics = new Evaluation();
         mathematics.setMatiere("Mathematics");
-        mathematics.setNote(14.5F);
-        return List.of(physics, mathematics);
+        mathematics.setNote(7.0);
+
+        Evaluation chemistry = new Evaluation();
+        chemistry.setNote(8.0);
+        chemistry.setMatiere("Chemistry");
+
+        Evaluation algorithm = new Evaluation();
+        algorithm.setNote(7.0);
+        algorithm.setMatiere("Algorithm");
+
+        Evaluation history = new Evaluation();
+        history.setNote(14.0);
+        history.setMatiere("Algorithm");
+
+        Evaluation art = new Evaluation();
+        art.setNote(11.0);
+        art.setMatiere("Art");
+
+//        Evaluation music = new Evaluation();
+//        music.setNote(9.0F);
+//        music.setMatiere("Music");
+
+        return List.of(physics, mathematics, chemistry, algorithm, history, art);
     }
 }
 

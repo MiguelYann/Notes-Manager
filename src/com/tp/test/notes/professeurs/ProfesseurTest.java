@@ -54,21 +54,21 @@ class ProfesseurTest {
 
         //Given
         final Eleve firstStudent = new Eleve(1, "Raissa", "Wahoue");
-        final Evaluation mathematicsEvaluationOfFirstStudent = new Evaluation("Mathematics", 12.0f, firstStudent, professeur);
-        final Evaluation algorithmEvaluationOfFirstStudent = new Evaluation("Chimie", 10.0f, firstStudent, new Professeur("James", "Scott"));
-        final Evaluation englishEvaluationOfFirstStudent = new Evaluation("English", 10.0f, firstStudent, new Professeur("Damien", "Kono"));
+        final Evaluation mathematicsEvaluationOfFirstStudent = new Evaluation("Mathematics", 12.0, firstStudent, professeur);
+        final Evaluation algorithmEvaluationOfFirstStudent = new Evaluation("Chimie", 10.0, firstStudent, new Professeur("James", "Scott"));
+        final Evaluation englishEvaluationOfFirstStudent = new Evaluation("English", 10.0, firstStudent, new Professeur("Damien", "Kono"));
         firstStudent.setEvaluations(List.of(mathematicsEvaluationOfFirstStudent, algorithmEvaluationOfFirstStudent, englishEvaluationOfFirstStudent));
         final Eleve secondStudent = new Eleve(2, "Yannick", "Norbert");
-        final Evaluation mathematicsEvaluationOfSecondStudent = new Evaluation("Mathematics", 04.5f, secondStudent, professeur);
-        final Evaluation englishEvaluationOfSecondStudent = new Evaluation("English", 14.0f, firstStudent, new Professeur("Damien", "Kono"));
-        final Evaluation algorithmEvaluationOfSecondStudent = new Evaluation("Algorithm", 10.0f, firstStudent, new Professeur("Ghil", "Peter"));
+        final Evaluation mathematicsEvaluationOfSecondStudent = new Evaluation("Mathematics", 04.5, secondStudent, professeur);
+        final Evaluation englishEvaluationOfSecondStudent = new Evaluation("English", 14.0, firstStudent, new Professeur("Damien", "Kono"));
+        final Evaluation algorithmEvaluationOfSecondStudent = new Evaluation("Algorithm", 10.0, firstStudent, new Professeur("Ghil", "Peter"));
         secondStudent.setEvaluations(List.of(mathematicsEvaluationOfSecondStudent, englishEvaluationOfSecondStudent, algorithmEvaluationOfSecondStudent));
 
         final Set<Eleve> eleves = Set.of(firstStudent, secondStudent);
         Promotion promotion = new Promotion(eleves);
 
         //When and Then
-        Assertions.assertThrows(IllegalStateException.class, () -> professeur.setNote(promotion, 4, 13.0f, 4));
+        Assertions.assertThrows(IllegalStateException.class, () -> professeur.setNote(promotion, 4, 13.0, 4));
     }
 
     @Test
@@ -76,21 +76,21 @@ class ProfesseurTest {
 
         //Given
         final Eleve firstStudent = new Eleve(1, "Raissa", "Wahoue");
-        final Evaluation mathematicsEvaluationOfFirstStudent = new Evaluation("Mathematics", 12.0f, firstStudent, professeur);
-        final Evaluation algorithmEvaluationOfFirstStudent = new Evaluation("Chimie", 10.0f, firstStudent, new Professeur("James", "Scott"));
-        final Evaluation englishEvaluationOfFirstStudent = new Evaluation("English", 10.0f, firstStudent, new Professeur("Damien", "Kono"));
+        final Evaluation mathematicsEvaluationOfFirstStudent = new Evaluation("Mathematics", 12.0, firstStudent, professeur);
+        final Evaluation algorithmEvaluationOfFirstStudent = new Evaluation("Chimie", 10.0, firstStudent, new Professeur("James", "Scott"));
+        final Evaluation englishEvaluationOfFirstStudent = new Evaluation("English", 10.0, firstStudent, new Professeur("Damien", "Kono"));
         firstStudent.setEvaluations(List.of(mathematicsEvaluationOfFirstStudent, algorithmEvaluationOfFirstStudent, englishEvaluationOfFirstStudent));
         final Eleve secondStudent = new Eleve(2, "Yannick", "Norbert");
-        final Evaluation mathematicsEvaluationOfSecondStudent = new Evaluation("Mathematics", 04.5f, secondStudent, professeur);
-        final Evaluation englishEvaluationOfSecondStudent = new Evaluation("English", 14.0f, firstStudent, new Professeur("Damien", "Kono"));
-        final Evaluation algorithmEvaluationOfSecondStudent = new Evaluation("Algorithm", 10.0f, firstStudent, new Professeur("Ghil", "Peter"));
+        final Evaluation mathematicsEvaluationOfSecondStudent = new Evaluation("Mathematics", 04.5, secondStudent, professeur);
+        final Evaluation englishEvaluationOfSecondStudent = new Evaluation("English", 14.0, firstStudent, new Professeur("Damien", "Kono"));
+        final Evaluation algorithmEvaluationOfSecondStudent = new Evaluation("Algorithm", 10.0, firstStudent, new Professeur("Ghil", "Peter"));
         secondStudent.setEvaluations(List.of(mathematicsEvaluationOfSecondStudent, englishEvaluationOfSecondStudent, algorithmEvaluationOfSecondStudent));
 
         final Set<Eleve> eleves = Set.of(firstStudent, secondStudent);
         Promotion promotion = new Promotion(eleves);
 
         //When
-        professeur.setNote(promotion, 2, 17.0f, 2);
+        professeur.setNote(promotion, 2, 17.0, 2);
 
         //Then
         Assertions.assertEquals(17.0f, secondStudent.getEvaluations().get(2).getNote().get());

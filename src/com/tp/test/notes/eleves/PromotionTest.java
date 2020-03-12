@@ -1,7 +1,7 @@
-package com.tp.test;
+package com.tp.test.notes.eleves;
 
-import com.tp.main.Eleve;
-import com.tp.main.Promotion;
+import com.tp.main.notes.eleves.Eleve;
+import com.tp.main.notes.eleves.Promotion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PromotionTest {
 
+    private Promotion promotion;
 
     @Test
     void should_have_classement_students_on_promotion_have_notes() {
