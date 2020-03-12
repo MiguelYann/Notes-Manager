@@ -77,7 +77,7 @@ class EleveTest {
         Double average = eleve.average();
 
         //Then
-        Assertions.assertEquals(8.0, average);
+        Assertions.assertEquals(9.0, average);
     }
 
     @Test
@@ -152,11 +152,11 @@ class EleveTest {
         art.setNote(11.0);
         art.setMatiere("Art");
 
-//        Evaluation music = new Evaluation();
-//        music.setNote(9.0F);
-//        music.setMatiere("Music");
+        Evaluation music = new Evaluation();
+        music.setNote(9.0);
+        music.setMatiere("Music");
 
-        return List.of(physics, mathematics, chemistry, algorithm, history, art);
+        return List.of(physics, mathematics, chemistry, algorithm, history, art, music);
     }
 }
 

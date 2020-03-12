@@ -62,16 +62,18 @@ public class Eleve extends Person {
     }
 
     public Double median() {
-        final int notesTotal = getNotes().size();
+        if (evaluations.isEmpty()) {
+            return null;
+        }
         List<Double> notes = getNotes();
+        final int notesTotal = getNotes().size();
         mediane = computeMedianFrom(notesTotal, notes);
         return mediane;
     }
 
     private Double computeMedianFrom(int notesTotal, List<Double> notes) {
         Double aMedian = 0.0;
-        int positionMedian = 0;
-
+        int positionMedian;
 
         switch (notesTotal % 2) {
             case 1:
@@ -89,7 +91,7 @@ public class Eleve extends Person {
         return aMedian;
     }
 
-    public List<Double> getNotes() {
+    public List<Double> getNotes() throws IllegalStateException {
         List<Double> notes = new ArrayList<>();
         for (Evaluation evaluation : evaluations) {
             if (evaluation.getNote().isEmpty()) {
